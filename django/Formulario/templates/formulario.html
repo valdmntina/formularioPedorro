@@ -1,0 +1,141 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <script src="{% static 'main.js' %}" defer> </script>
+    
+    <title>Formulario</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <h1>Validaciones JS</h1>
+    </header>
+
+    <div class="">
+        <section class="detalles">
+            <div class="card">
+                <p class="card__title">los campos se validaran de la siguiente manera:</li>
+                <ul>
+                    <li><span>Ficha:</span> se puede ingresar cualquier caracter</li>
+
+                    <li><span>Nombre:</span>solo se puede ingresar letras</li>
+
+                    <li><span>Apellido:</span> solo se puede ingresar letras</li>
+
+                    <li><span>Correo:</span> solo se puede ingresar un correo valido</li>
+
+                    <li><span>Télefono:</span> solo se puede ingresar numeros</li>
+
+                    <li><span>Genero:</span> solo se puede seleccionar un genero</li>
+
+                    <li><span>Ciudad:</span> solo se puede seleccionar una ciudad</li>
+
+                    <li><span>Habilidades:</span> se tiene que seleccionar como minimo tres habilidades</p>
+                </ul>
+            </div>
+        </section>
+
+
+        <section>
+            <div class="card">
+                <form action="form" autocomplete="on">
+                    <!--autocomplete: se auto completa el fomulario con lo previamente enviado -->
+                    <div class="control">
+                        <label for="ficha">Número de ficha</label>
+                        <input type="text" name="ficha" id="ficha" required>
+                    </div>
+                    <div class="control">
+                        <!--nombre con validacion-->
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" pattern="[a-zA-Z]+" required>
+                    </div>
+                    <div class="control">
+                        <!--apellido con validacion-->
+                        <label for="Apellido">Apellido</label>
+                        <input type="text" name="apellido" id="apellido" pattern="[a-zA-Z]+" required>
+                    </div>
+                    <div class="control">
+                        <label for="correo">Correo</label>
+                        <input type="email" name="correo" id="correo" required>
+                    </div>
+                    <div class="control">
+                        <!--telefono con validacion maximo 10 numeros-->
+                        <label for="telefono">Télefono</label>
+                        <input type="tel" name="telefono" id="telefono" pattern="[0-9]{10}" maxlength="10" required>
+                    </div>
+
+                    <div class="control control--row">
+                        <input type="radio" name="genero" id="hombre" value="hombre">
+                        <label for="radio">Hombre</label>
+                        <input type="radio" name="genero" id="mujer" value="mujer">
+                        <label for="radio">Mujer</label>
+                        <input type="radio" name="genero" id="otro" value="otro" .>
+                        <label for="otro">Otro</label>
+                    </div>
+
+                    <div class="control">
+                        <label for="ciudad">Ciudad</label>
+                        <select name="ciudad" id="ciudad" required>
+                            <option value="otra">Seleccione una ciudad</option>
+                            <option value="medellin">Medellin</option>
+                            <option value="bucaramanga">Bucaramanga</option>
+                            <option value="barranquilla">Barranquilla</option>
+                            <option value="bogotá">Bogotá</option>
+                        </select>
+                    </div>
+
+                    <div class="control">
+                        <p>Seleccione minimo tres habilidades</p>
+                        <div>
+                            <input type="checkbox" name="habilidades" id="html" value="html">
+                            <label for="checkbox">HTML</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="habilidades" id="css" value="css">
+                            <label for="checkbox">CSS</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="habilidades" id="javascript" value="javascript">
+                            <label for="checkbox">JavaScript</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="habilidades" id="php" value="php">
+                            <label for="checkbox">PHP</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="habilidades" id="java" value="java">
+                            <label for="checkbox">JAVA</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="habilidades" id="sql" value="sql">
+                            <label for="checkbox">SQL</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="habilidades" id="uml" value="uml">
+                            <label for="checkbox">UML</label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex d-center padding-top-8">
+                        <button type="submit" class="boton boton--gris">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+</body>
+
+</html>
