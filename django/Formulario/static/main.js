@@ -55,7 +55,7 @@ const validarCorreo = function () {
   let texto = correo.value
   console.log(texto)
 
-  if (texto.match(email) != null) {
+  if (texto.match(email) == null) {
     alert("escriba un correo")
   }
 }
@@ -67,7 +67,7 @@ const validarTelefono = function () {
   let texto = telefono.value
   console.log(texto)
 
-  if (texto.match(tel) != null) {
+  if (texto.match(tel) == null) {
     alert("escriba su telefono")
   }
 }
@@ -85,7 +85,7 @@ const validarGenero = function (evento) {
   }
   if (validado === 0) {
     evento.preventDefault() //evita que el formulario se envie
-    alert("debe marcar una")
+    alert("debe marcar un genero")
   }
 }
 
