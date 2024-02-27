@@ -4,7 +4,9 @@ const nombre = document.getElementById("nombre")
 const apellido = document.getElementById("apellido")
 const correo = document.getElementById("correo")
 const telefono = document.getElementById("telefono")
-/*const genero = document.getElementsByName("genero")*/
+const genero = document.getElementsByName('genero');
+const ciudad = document.getElementById("ciudad")
+const enviar = document.getElementById("enviar")
 
 
 
@@ -12,19 +14,16 @@ const telefono = document.getElementById("telefono")
 // let permite declarar variables limitando su alcance al bloque, declaración, o expresión donde se está usando, no es global
 
 //validar la ficha 
-const validar = function () {
+const validarFicha = function () {
   let cod = /^[a-z]{3}_[0-9]{5}$/;
   let texto = ficha.value
   console.log(texto);
 
-  if (texto.match(cod) != null) { // != siginifica desigualdad 
-    alert("valido")               // y match devuelve todas las ocurrencias de una expresión regular dentro de una cadena.
-  } else {
-    alert("invalido")
-  }
-}
+  if (texto.match(cod) == null) {
+    alert("ingrese una ficha valida")
+  } // != siginifica desigualdad 
 
-ficha.addEventListener("blur", validar)
+}
 
 //validar nombre
 const validarNombre = function () {
@@ -32,14 +31,11 @@ const validarNombre = function () {
   let texto = nombre.value
   console.log(texto);
 
-  if (texto.match(name) != null) {
-    alert("valido")
-  } else {
-    alert("invalido")
+  if (texto.match(name) == null) {
+    alert("ingrese un nombre")
   }
 }
 
-nombre.addEventListener("blur", validarNombre)
 
 //validar apellido
 const validarApellido = function () {
@@ -47,14 +43,11 @@ const validarApellido = function () {
   let texto = apellido.value
   console.log(texto);
 
-  if (texto.match(lastname) != null) {
-    alert("valido")
-  } else {
-    alert("invalido")
+  if (texto.match(lastname) == null) {
+    alert("ingrese un apellido")
   }
 }
 
-apellido.addEventListener("blur", validarApellido)
 
 //validar correo 
 const validarCorreo = function () {
@@ -63,13 +56,10 @@ const validarCorreo = function () {
   console.log(texto)
 
   if (texto.match(email) != null) {
-    alert("valido")
-  } else {
-    alert("invalido")
+    alert("escriba un correo")
   }
 }
 
-correo.addEventListener("blur", validarCorreo)
 
 //validar telefono
 const validarTelefono = function () {
@@ -78,24 +68,39 @@ const validarTelefono = function () {
   console.log(texto)
 
   if (texto.match(tel) != null) {
-    alert("valido")
-  } else {
-    alert("invalido")
+    alert("escriba su telefono")
   }
 }
 
-telefono.addEventListener("blur", validarTelefono)
 
 //validar genero
-function validarRadio() {
-  const s = "no";
-  for (const i = 0; i < document.getElementsByName.length; i++) {
-    if (document.getElementsByName[i].checked) {
-      alert("marco:" + document.getElementsByName[i].value);
-      s = "si";
+const validarGenero = function (evento) {
+  let validado = 0
+  for (const i of genero) {  //i recorre las tres opciones y busca la que este marcada
+    if (i.checked) {
+      validado = i.value
+      break
     }
+
   }
-  if (s == "no"){
-    alert("debe seleccionar un genero");
+  if (validado === 0) {
+    evento.preventDefault() //evita que el formulario se envie
+    alert("debe marcar una")
   }
 }
+
+//validar ciudad
+const validarCiudad = function (evento) {
+  if (ciudad.value === "") {
+    evento.preventDefault()
+    alert("indique una ciudad")
+  }
+}
+
+enviar.addEventListener("click", validarFicha)
+enviar.addEventListener("click", validarNombre)
+enviar.addEventListener("click", validarApellido)
+enviar.addEventListener("click", validarCorreo)
+enviar.addEventListener("click", validarTelefono)
+enviar.addEventListener("click", validarGenero)
+enviar.addEventListener("click", validarCiudad)
